@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Ingredient Detection</title>
+	<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+	<script src="{{ url_for('static', filename='script.js') }}">
+
+	</script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js">
+
+	</script>
+
+</head>
+
+<body>
+
+	<div id="shrek_container">
+		<img id="shrek" src="{{ url_for('static', filename='images/shrek.png') }}" />
+    </div>
+
+    <!--menu bar-->
+    <div id="topNav">
+
+      <div id="headImgContainer">
+        <a href="#content"><img id="headerImg" src="https://img.icons8.com/ios/50/ffffff/knife-and-spatchula.png"/></a>
+        <img id="headerImgMobile" onClick="toggleDropDown()" src="https://img.icons8.com/material-outlined/48/ffffff/hamburger.png"/>
+      </div>
+
+      <div id="menuContainer" >
+        <a class="menuItem" href = "#content"><div> About </div> </a>
+        <a class="menuItem" href = "#panel-three"><div> How It Works </div> </a>
+        <a class="menuItem" href = "#panel-four"><div> The Team </div> </a>
+        <a class="menuItem" href = "#panel-two"><div> Try it! </div> </a>
+      </div>
+
+    </div>
+
+
+    <div id="dropDown"  onClick="toggleDropDown()">
+      <div id="dropDownContainer">
+        <div class="dropDownItem" onclick="scrollDown(0)" href = "#content"> About </div>
+        <hr>
+        <div class="dropDownItem" onclick="scrollDown(1)" href = "#panel-three"> How It Works  </div>
+        <hr>
+        <div class="dropDownItem" onclick="scrollDown(2)" href = "#panel-four"> The Team  </div>
+        <hr>
+        <div class="dropDownItem" onclick="scrollDown(3 )"href = "#panel-two"> Try It! </div>
+      </div>
+    </div>
+
+    <div id="content">
+
+      <div id="panel-one">
+
+        <div id="panel-one-left"> 
+          <h2 id="title"> AI that detects ingredients in East Asian food </h2>
+          <br />
+          <br />
+          <h3> What does our project do? </h3>
+          <hr>
+          <h4 class="thin"> We designed an image classifier that predicts what ingredients are in a picture of a food item </h4>
+          <br />
+          <h3> Our dataset: </h3>
+          <hr>
+          <h4 class="thin"> Our dataset is comprised of more then 100,000 labeled pictures of East Asian food</h4>
+          <br />
+          <h3 id="want-to-try"> Want to try it yourself? </h3>
+          <hr>
+          <h4 class="thin"> Scroll down!</h4>
+        </div>
+
+        <div id="panel-one-right">
+          <img id="food-img" src="{{ url_for('static', filename='images/noodles3.png') }}"/> 
+          <div id="floating-img-box"> 
+            AI Detected: <br />
+            <a href="" class="typewrite" data-period="2000"   data-type='[ "Egg", "Mushrooms", "Noodles", "Jalapeños" ]'>
+              <span class="wrap"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="panel-two">
+        <div id="panel-two-left">
+          <div id="tempImg">  <div id='get_ingredients_button'><form id='get_ingredients_form' method="post" enctype=multipart/form-data>
+                        <input id="get_ingredients_input_field" name="file" type="file" hidden/>
+                    </form><img id="uploadImg" src="https://img.icons8.com/ios-glyphs/90/000000/upload--v1.png"></div></div>
+          <div id="ingredientsText">
+          </div>
+          <br>
+          <div id="originalImg">
+          </div>
+        </div>
+
+
+        <div id = "panel-two-right">
+          <div id = "info-panel-two">
+            <h1>Upload a picture</h1>
+
+            <p> Want to try it? We've made it simple. Click on the upload button and upload a picture! <br>  
+
+          </div>
+          <div id="output-img-description">
+          </div>
+          <div id="output-img-box">
+          </div>
+        </div>
+      </div>
+
+
+
+      <svg class="wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,96L48,106.7C96,117,192,139,288,138.7C384,139,480,117,576,128C672,139,768,181,864,197.3C960,213,1056,203,1152,170.7C1248,139,1344,85,1392,58.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+
+
+      <div id="panel-three">
+        <div id="example-images">
+          <div class="row">
+         <img class = "ex-img" src="{{ url_for('static', filename='images/dish.png') }}" />
+         <img class = "ex-img" src="{{ url_for('static', filename='images/unnamed (6).jpg') }}" />
+         </div>
+         <div class="row">
+         <img class = "ex-img"  id="offset" src="{{ url_for('static', filename='images/unnamed (2).png') }}" />
+         <img class = "ex-img" src="{{ url_for('static', filename='images/unnamed (1).png') }}" /> 
+         </div>
+        </div>
+        <div id="informational-text">
+          <h1 style="color:green; font-size: 40px" > 3 weeks </h1>
+          <h3 class="info-para"> That's how long it took for us to do our project. We all started with various levels of previous programming experience. 3 weeks of lessons and 110,241 images worth of processing later, our AI was created.</h3>
+
+          <h2> What was our process? </h2>
+          <h3 class="info-para"> We faced a multitude of hurdles on our way to a workable AI. Our first dataset, with more then a million pictures, proved unusable and inconsistent when an AI was trained. We scrapped it and used the <a class="hyperLink" href="http://vireo.cs.cityu.edu.hk/VireoFood172/"> Vireo-172 </a> dataset, which was much better and got us an AI with 91 percent mean recall and 87 percent mean precision. </h3>
+
+          <h2> How does it work? </h2>
+          <h3 class="info-para"> We used <a class="hyperLink" href="https://pytorch.org/"> PyTorch </a> to create our AI, and our architecture imitates that of <a class="hyperLink" href="https://pytorch.org/hub/pytorch_vision_vgg/"> VGG16 </a> convolutional neural network. </h3>
+
+          <img id="model-img" src="{{ url_for('static', filename='images/model.png') }}"/> 
+
+
+        </div>
+      </div>
+
+      <div id="panel-four">
+        <div id="panel-four-ttl">
+          Meet The Team
+        </div>
+        <div class="team-card-container">
+          <div class="team-card">
+            <div class="team-member-img">
+              <img class="member-img" src="{{ url_for('static', filename='images/pfp/neev_main.PNG') }}" />
+              <img class="hidden-img" src="{{ url_for('static', filename='images/pfp/neev_alt.jpg') }}" />
+            </div>
+            <hr class="team-card-seperate" /> 
+            <div class="team-member-name">
+              Neev Mangal
+            </div>
+
+            <div class="team-member-description">
+              Neev Mangal is a rising Junior at Wayzata High School. He captains debate & robotics, programs fullstack in his spare time, and is an elected member of the student council. He enjoys astronomy & astrophotography and aims for a degree in aeronautical engineering.  <em></em>
+              <br />
+              <a href="https://github.com/ccans" target="_blank">
+              <img style="height: 30px; margin-top:10px;"  src="https://image.flaticon.com/icons/png/512/25/25231.png" /> </a>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="team-card-container">
+          <div class="team-card">
+            <div class="team-member-img">
+              <img class="member-img" src="{{ url_for('static', filename='images/pfp/ishaanv_main2.png') }}" />
+              <img class="hidden-img" src="{{ url_for('static', filename='images/pfp/ishaanv_shrek.png') }}" />
+            </div>
+            <hr class="team-card-seperate" /> 
+            <div class="team-member-name">
+              Ishaan Variava
+            </div>
+
+            <div class="team-member-description">
+              Ishaan Variava is a rising senior at Piscataway High School in New Jersey, USA. He enjoys computer programming, video games, and learning new things. Ishaan enjoys learning and programming in JAVA and Python. In the future, he plans to pursue a degree in computer science.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="team-card-container">
+          <div class="team-card">
+            <div class="team-member-img">
+              <img class="member-img" src="{{ url_for('static', filename='images/pfp/pedro_main.jpg') }}" />
+              <img class="hidden-img" src="{{ url_for('static', filename='images/pedro_shrek.jpg') }}" />
+            </div>
+            <hr class="team-card-seperate" /> 
+            <div class="team-member-name">
+              Pedro Gronda Garrigues
+            </div>
+
+            <div class="team-member-description">
+              Pedro is a rising senior at the American School of Madrid in Madrid, Spain. He is passionate about piano composition, clarinet performance, volunteering, day trading, and enjoys playing golf and video games. In college, he hopes to study computer science and artificial intelligence.
+              <br />
+              <a href = "https://www.linkedin.com/in/pedro-gronda-garrigues-2815371a6/" target="_blank">
+                <img style="height: 30px; margin-top: 10px" src="https://image.flaticon.com/icons/png/512/174/174857.png" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card-container">
+          <div class="team-card">
+            <div class="team-member-img">
+              <img class="member-img" src="{{ url_for('static', filename='images/pfp/sai_main.jpg') }}" />
+              <img class="hidden-img" src="{{ url_for('static', filename='images/pfp/Sai_Shrek.jpg') }}" />
+            </div>
+            <hr class="team-card-seperate" /> 
+            <div class="team-member-name">
+              Sai Pranav Theerthala
+            </div>
+
+            <div class="team-member-description">
+              Sai is a rising senior at High School North in New Jersey. Some of his hobbies include playing basketball and volleyball, playing his viola, volunteering, and computer programming. In the future, Sai hopes to study artificial intelligence and earn a degree in computer science.
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="team-card-container">
+          <div class="team-card">
+            <div class="team-member-img">
+              <img class="member-img" src="{{ url_for('static', filename='images/neev.jpg') }}" />
+              <img class="hidden-img" src="{{ url_for('static', filename='images/img3.jpg') }}" />
+            </div>
+            <hr class="team-card-seperate" /> 
+            <div class="team-member-name">
+              Safia Shah
+            </div>
+
+            <div class="team-member-description">
+              I am a rising senior at River Hill and I am creative.
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card-container">
+          <div class="team-card">
+            <div class="team-member-img">
+              <img class="member-img" src="{{ url_for('static', filename='images/pfp/tommy_main.png') }}" />
+              <img class="hidden-img" src="{{ url_for('static', filename='images/pfp/tommy_alt.jpg') }}" />
+            </div>
+            <hr class="team-card-seperate" />
+            <div class="team-member-name">
+              Tommy Welch
+            </div>
+
+            <div class="team-member-description">
+              Thomas Bramwell Welch (December 31, 1825 – December 29, 1903) was a British–American Methodist minister and dentist. He pioneered the use of pasteurization as a means of preventing the fermentation of grape juice. He persuaded local churches to adopt this non-alcoholic wine substitute for use in Holy Communion, calling it "Dr. Welch's Unfermented Wine."
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card-container">
+          <div class="team-card">
+            <div class="team-member-img">
+              <img class="member-img" src="{{ url_for('static', filename='images/pfp/rinav_main.jpg') }}" />
+              <img class="hidden-img" src="{{ url_for('static', filename='images/pfp/shrekified_rinav.jpg') }}" />
+            </div>
+            <hr class="team-card-seperate" /> 
+            <div class="team-member-name">
+              Rinav Kasthuri
+            </div>
+
+            <div class="team-member-description">
+              <!--description here-->
+              Second-year undergraduate studying computer science at University of Washington. Rinav is a big fan of drinking jasmine tea, listening to classical music, and working on probabilistic deep learning because he believes we all have some uncertainty in our lives and deep learning models even more so 😉
+            </div>
+          </div>
+        </div>
+      </div>
+
+  
+
+    </div>
+  
+    <script>
+      var imageDiv; 
+      var image;
+      
+      var loadFile = function(event) {
+        imageDiv = document.getElementById('originalImg');
+        image = document.createElement("img");
+        imageDiv.innerHTML = "";
+        image.src = URL.createObjectURL(event.target.files[0]);
+        imageDiv.style.opacity = 0;
+      };
+      
+      function finishLoad() {
+        imageDiv.appendChild(image);
+        imageDiv.style.opacity = 1;
+
+      }
+      
+    </script>
+
+    <script>
+      
+      // added to get upload with a button working
+
+      button = document.getElementById('get_ingredients_button');
+      button.addEventListener('click', openDialog);
+
+      function openDialog() {
+          document.getElementById('get_ingredients_input_field').click();
+      }
+
+      document.getElementById("ingredientsText").style.opacity = 0;
+
+      let input_field = document.getElementById('get_ingredients_input_field');
+      let form = document.getElementById("get_ingredients_form");
+      input_field.onchange = function(ev) {
+        loadFile(ev);
+        let oData = new FormData(form);
+        let oReq = new XMLHttpRequest();
+
+        oReq.open("POST", "{{url_for('home')}}", true);
+        oReq.onload = function(oEvent) {
+          if (oReq.status == 200) {
+            ingredientsDiv = document.getElementById("ingredientsText");
+            ingredientsDiv.innerHTML = '';
+            ingredients = document.createElement("span");
+            responseJson = JSON.parse(oReq.responseText)
+            ingredients.innerHTML = "<strong>Predictions:</strong> " + responseJson["ingredients"];
+            ingredientsDiv.appendChild(ingredients)
+            
+//             fade(document.getElementById("ingredientsText"));
+            $("#ingredientsText").fadeIn(4);
+            document.getElementById("ingredientsText").style.opacity = 1;
+            console.log("updated");
+            setTimeout(function(){
+              finishLoad();
+            }, 500);
+            
+            document.getElementById("output-img-description").style.opacity = 0;
+            
+            output_img_desc = document.getElementById("output-img-description");
+            output_img_box = document.getElementById("output-img-box");
+            output_img_desc.innerHTML = '';
+            output_img_box.innerHTML = '';
+            // add reconstructed images to div if ingredients were found
+            if (responseJson["ingredients"] !== "No ingredients detected") {
+              reconstructed_image_paths = responseJson["reconstructed_image_paths"];
+              vis_description = document.createElement("p");
+              vis_description.innerHTML = "Here are different views of your dish (visualized by our AI)";
+              output_img_desc.appendChild(vis_description);
+              
+              setTimeout(function() {
+                document.getElementById("output-img-description").style.opacity = 1;
+                placeImg(reconstructed_image_paths, 0, output_img_box)
+//                 for (let i in reconstructed_image_paths) {
+//                   img = document.createElement("img");
+//                   img.src = reconstructed_image_paths[i];
+//                   output_img_box.appendChild(img);
+//                 }
+              }, 1000);
+
+
+              function placeImg(img_paths_r, it, output_img_bx) {
+                if(it != img_paths_r.length) {
+
+                img = document.createElement("img");
+                img.src = img_paths_r[it];
+                output_img_bx.appendChild(img);
+                  
+                it++;
+                setTimeout(function() {
+                  placeImg(img_paths_r, it, output_img_bx)
+                }, 250);
+              }
+              }
+            }
+          } else {
+            alert("Error " + oReq.status + " occurred when trying to upload your file")
+          }
+        };
+        oReq.send(oData);
+        ev.preventDefault();
+      };
+      
+
+
+      
+      
+      
+   </script>
+  </body>
+  
+</html>

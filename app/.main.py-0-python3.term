@@ -1,0 +1,22 @@
+Python 3.8.5 (default, Jul 28 2020, 12:59:40) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> [K>>> python 3[K[K3 main.py
+  File "<stdin>", line 1
+    python3 main.py
+            ^
+SyntaxError: invalid syntax
+>>> Python 3.8.5 (default, May 27 2021, 13:30:53) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> [K>>> python3 mainpy[K[K.py
+  File "<stdin>", line 1
+    python3 main.py
+            ^
+SyntaxError: invalid syntax
+>>> python3 main
+  File "<stdin>", line 1
+    python3 main
+            ^
+SyntaxError: invalid syntax
+>>> hom

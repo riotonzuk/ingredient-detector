@@ -1,0 +1,11 @@
+Python 3.8.5 (default, May 27 2021, 13:30:53) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+Python 3.8.5 (default, May 27 2021, 13:30:53) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> clear
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'clear' is not defined
+>>> 

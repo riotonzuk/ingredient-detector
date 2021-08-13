@@ -1,0 +1,4 @@
+Menu items:
+- About
+- How it works
+- Team
