@@ -16,9 +16,9 @@ from utils import get_base_url, allowed_file, and_syntax
     port may need to be changed if there are multiple flask servers running on same server
     comment out below three lines of code when ready for production deployment
 '''
-port = 12349
-base_url = get_base_url(port)
-app = Flask(__name__, static_url_path = base_url + 'static')
+# port = 12349
+# base_url = get_base_url(port)
+app = Flask(__name__)
 
 '''
     cv scaffold code
@@ -34,8 +34,7 @@ app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024
 ingredient_pred_model = ConvNet(NUM_CLASSES)
 image_recon_model = Generator()
 ingredient_pred_model.load_state_dict(torch.load("weights/ingredient_pred.pth", map_location=torch.device('cpu')))
-image_recon_model.load_state_dict(torch.load("weights/image_recon.pth", 
-                                             map_location=torch.device('cpu')))
+image_recon_model.load_state_dict(torch.load("weights/image_recon.pth", map_location=torch.device('cpu')))
 ingredient_pred_model.eval()
 image_recon_model.eval()
 
