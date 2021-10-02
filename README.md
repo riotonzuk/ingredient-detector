@@ -1,4 +1,4 @@
-# Brain Tumor Recognizer
+# Ingredient Detector
 #### **[Click here for the original dataset](https://www.kaggle.com/sartajbhuvaji/brain-tumor-classification-mri)**.
 ---
 ### File Structure
